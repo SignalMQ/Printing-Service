@@ -7,6 +7,7 @@ namespace Printing_Service.Forms
     public partial class Admin : Form
     {
         private List<User> _users = new List<User>();
+        private List<Request> _requests = new List<Request>();
         private readonly ICreateUserFactory _createUserFactory;
         private readonly IEditUserFactory _editUserFactory;
         private readonly DBase _db;
@@ -30,6 +31,16 @@ namespace Printing_Service.Forms
         {
             _users = _db.Users.ToList();
             usersTable.DataSource = _users;
+            if (_users.Count > 0)
+            {
+                LoadRequests(_users[0]);
+            }
+        }
+
+        private void LoadRequests(User? user)
+        {
+            _requests = _db.Requests.ToList();
+            requestsTable.DataSource = _requests.Select(x => x.UserId == user.Id);
         }
 
         private void createUserItem_Click(object sender, EventArgs e)
@@ -82,6 +93,13 @@ namespace Printing_Service.Forms
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void usersTable_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var selectedIndex = usersTable.CurrentCell.RowIndex;
+            var user = _users[selectedIndex];
+            LoadRequests(user);
         }
     }
 }

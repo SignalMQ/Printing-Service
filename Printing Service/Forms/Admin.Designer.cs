@@ -41,10 +41,18 @@
             btnExit = new Button();
             btnRequests = new Button();
             btnReports = new Button();
+            requestsTable = new DataGridView();
+            userBindingSource = new BindingSource(components);
+            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            usernameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            passwordDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            roleDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             GridLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Logo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)usersTable).BeginInit();
             usersStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)requestsTable).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)userBindingSource).BeginInit();
             SuspendLayout();
             // 
             // GridLayout
@@ -57,15 +65,17 @@
             GridLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             GridLayout.Controls.Add(Logo, 0, 0);
             GridLayout.Controls.Add(usersTable, 1, 1);
-            GridLayout.Controls.Add(btnExit, 1, 3);
-            GridLayout.Controls.Add(btnRequests, 2, 3);
-            GridLayout.Controls.Add(btnReports, 3, 3);
+            GridLayout.Controls.Add(btnExit, 1, 4);
+            GridLayout.Controls.Add(btnRequests, 2, 4);
+            GridLayout.Controls.Add(btnReports, 3, 4);
+            GridLayout.Controls.Add(requestsTable, 1, 3);
             GridLayout.Dock = DockStyle.Fill;
             GridLayout.Location = new Point(0, 0);
             GridLayout.Name = "GridLayout";
-            GridLayout.RowCount = 4;
+            GridLayout.RowCount = 5;
             GridLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
             GridLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            GridLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             GridLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             GridLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
             GridLayout.Size = new Size(784, 561);
@@ -89,18 +99,21 @@
             usersTable.AllowUserToDeleteRows = false;
             usersTable.AllowUserToResizeColumns = false;
             usersTable.AllowUserToResizeRows = false;
+            usersTable.AutoGenerateColumns = false;
             usersTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             usersTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            usersTable.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, usernameDataGridViewTextBoxColumn, passwordDataGridViewTextBoxColumn, roleDataGridViewTextBoxColumn });
             GridLayout.SetColumnSpan(usersTable, 3);
             usersTable.ContextMenuStrip = usersStrip;
+            usersTable.DataSource = userBindingSource;
             usersTable.Dock = DockStyle.Fill;
             usersTable.Location = new Point(23, 53);
             usersTable.Name = "usersTable";
             usersTable.ReadOnly = true;
-            GridLayout.SetRowSpan(usersTable, 2);
             usersTable.RowTemplate.Height = 25;
-            usersTable.Size = new Size(738, 454);
+            usersTable.Size = new Size(738, 214);
             usersTable.TabIndex = 1;
+            usersTable.CellClick += usersTable_CellClick;
             // 
             // usersStrip
             // 
@@ -172,6 +185,54 @@
             btnReports.Text = "Reports";
             btnReports.UseVisualStyleBackColor = true;
             // 
+            // requestsTable
+            // 
+            requestsTable.AllowUserToAddRows = false;
+            requestsTable.AllowUserToDeleteRows = false;
+            requestsTable.AllowUserToResizeColumns = false;
+            requestsTable.AllowUserToResizeRows = false;
+            requestsTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            requestsTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            GridLayout.SetColumnSpan(requestsTable, 3);
+            requestsTable.Dock = DockStyle.Fill;
+            requestsTable.Location = new Point(23, 293);
+            requestsTable.Name = "requestsTable";
+            requestsTable.RowTemplate.Height = 25;
+            requestsTable.Size = new Size(738, 214);
+            requestsTable.TabIndex = 5;
+            // 
+            // userBindingSource
+            // 
+            userBindingSource.DataSource = typeof(BL.Objects.User);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn.HeaderText = "Id";
+            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // usernameDataGridViewTextBoxColumn
+            // 
+            usernameDataGridViewTextBoxColumn.DataPropertyName = "Username";
+            usernameDataGridViewTextBoxColumn.HeaderText = "Username";
+            usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
+            usernameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // passwordDataGridViewTextBoxColumn
+            // 
+            passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
+            passwordDataGridViewTextBoxColumn.HeaderText = "Password";
+            passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
+            passwordDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // roleDataGridViewTextBoxColumn
+            // 
+            roleDataGridViewTextBoxColumn.DataPropertyName = "Role";
+            roleDataGridViewTextBoxColumn.HeaderText = "Role";
+            roleDataGridViewTextBoxColumn.Name = "roleDataGridViewTextBoxColumn";
+            roleDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // Admin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -186,6 +247,8 @@
             ((System.ComponentModel.ISupportInitialize)Logo).EndInit();
             ((System.ComponentModel.ISupportInitialize)usersTable).EndInit();
             usersStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)requestsTable).EndInit();
+            ((System.ComponentModel.ISupportInitialize)userBindingSource).EndInit();
             ResumeLayout(false);
         }
 
@@ -202,5 +265,11 @@
         private ToolStripMenuItem editUserToolStripMenuItem;
         private ToolStripMenuItem deleteUserToolStripMenuItem;
         private ToolStripMenuItem updateTableToolStripMenuItem;
+        private DataGridView requestsTable;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn roleDataGridViewTextBoxColumn;
+        private BindingSource userBindingSource;
     }
 }

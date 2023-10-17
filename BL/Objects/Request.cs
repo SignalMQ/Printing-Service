@@ -21,7 +21,7 @@
         /// <summary>
         /// Price of service
         /// </summary>
-        public long Price { get; set; }
+        public double Price { get; set; }
         /// <summary>
         /// Type of fees
         /// </summary>
@@ -37,6 +37,6 @@
         /// <summary>
         /// Request created date and time
         /// </summary>
-        public DateTime? Created { get; set; } = DateTime.Now;
+        public DateTime Created { get; set; } = DateTime.Now;
     }
 }
