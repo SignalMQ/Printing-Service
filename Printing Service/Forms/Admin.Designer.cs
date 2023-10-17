@@ -33,26 +33,36 @@
             GridLayout = new TableLayoutPanel();
             Logo = new PictureBox();
             usersTable = new DataGridView();
+            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            usernameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            passwordDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            roleDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             usersStrip = new ContextMenuStrip(components);
             createUserItem = new ToolStripMenuItem();
             editUserToolStripMenuItem = new ToolStripMenuItem();
             deleteUserToolStripMenuItem = new ToolStripMenuItem();
             updateTableToolStripMenuItem = new ToolStripMenuItem();
+            userBindingSource = new BindingSource(components);
             btnExit = new Button();
             btnRequests = new Button();
             btnReports = new Button();
             requestsTable = new DataGridView();
-            userBindingSource = new BindingSource(components);
-            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            usernameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            passwordDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            roleDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            requestBindingSource = new BindingSource(components);
+            idDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            userIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            serviceTypeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            priceDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            feesTypeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            statusDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            isSurchargedDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            createdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             GridLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Logo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)usersTable).BeginInit();
             usersStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)requestsTable).BeginInit();
             ((System.ComponentModel.ISupportInitialize)userBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)requestsTable).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)requestBindingSource).BeginInit();
             SuspendLayout();
             // 
             // GridLayout
@@ -115,6 +125,34 @@
             usersTable.TabIndex = 1;
             usersTable.CellClick += usersTable_CellClick;
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn.HeaderText = "Id";
+            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // usernameDataGridViewTextBoxColumn
+            // 
+            usernameDataGridViewTextBoxColumn.DataPropertyName = "Username";
+            usernameDataGridViewTextBoxColumn.HeaderText = "Username";
+            usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
+            usernameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // passwordDataGridViewTextBoxColumn
+            // 
+            passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
+            passwordDataGridViewTextBoxColumn.HeaderText = "Password";
+            passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
+            passwordDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // roleDataGridViewTextBoxColumn
+            // 
+            roleDataGridViewTextBoxColumn.DataPropertyName = "Role";
+            roleDataGridViewTextBoxColumn.HeaderText = "Role";
+            roleDataGridViewTextBoxColumn.Name = "roleDataGridViewTextBoxColumn";
+            roleDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // usersStrip
             // 
             usersStrip.Items.AddRange(new ToolStripItem[] { createUserItem, editUserToolStripMenuItem, deleteUserToolStripMenuItem, updateTableToolStripMenuItem });
@@ -148,6 +186,10 @@
             updateTableToolStripMenuItem.Size = new Size(146, 22);
             updateTableToolStripMenuItem.Text = "Update table";
             updateTableToolStripMenuItem.Click += updateTableToolStripMenuItem_Click;
+            // 
+            // userBindingSource
+            // 
+            userBindingSource.DataSource = typeof(BL.Objects.User);
             // 
             // btnExit
             // 
@@ -191,9 +233,12 @@
             requestsTable.AllowUserToDeleteRows = false;
             requestsTable.AllowUserToResizeColumns = false;
             requestsTable.AllowUserToResizeRows = false;
+            requestsTable.AutoGenerateColumns = false;
             requestsTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             requestsTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            requestsTable.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn1, userIdDataGridViewTextBoxColumn, serviceTypeDataGridViewTextBoxColumn, priceDataGridViewTextBoxColumn, feesTypeDataGridViewTextBoxColumn, statusDataGridViewTextBoxColumn, isSurchargedDataGridViewTextBoxColumn, createdDataGridViewTextBoxColumn });
             GridLayout.SetColumnSpan(requestsTable, 3);
+            requestsTable.DataSource = requestBindingSource;
             requestsTable.Dock = DockStyle.Fill;
             requestsTable.Location = new Point(23, 293);
             requestsTable.Name = "requestsTable";
@@ -201,37 +246,57 @@
             requestsTable.Size = new Size(738, 214);
             requestsTable.TabIndex = 5;
             // 
-            // userBindingSource
+            // requestBindingSource
             // 
-            userBindingSource.DataSource = typeof(BL.Objects.User);
+            requestBindingSource.DataSource = typeof(BL.Objects.Request);
             // 
-            // idDataGridViewTextBoxColumn
+            // idDataGridViewTextBoxColumn1
             // 
-            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            idDataGridViewTextBoxColumn.HeaderText = "Id";
-            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            idDataGridViewTextBoxColumn.ReadOnly = true;
+            idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn1.HeaderText = "Id";
+            idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
             // 
-            // usernameDataGridViewTextBoxColumn
+            // userIdDataGridViewTextBoxColumn
             // 
-            usernameDataGridViewTextBoxColumn.DataPropertyName = "Username";
-            usernameDataGridViewTextBoxColumn.HeaderText = "Username";
-            usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
-            usernameDataGridViewTextBoxColumn.ReadOnly = true;
+            userIdDataGridViewTextBoxColumn.DataPropertyName = "UserId";
+            userIdDataGridViewTextBoxColumn.HeaderText = "UserId";
+            userIdDataGridViewTextBoxColumn.Name = "userIdDataGridViewTextBoxColumn";
             // 
-            // passwordDataGridViewTextBoxColumn
+            // serviceTypeDataGridViewTextBoxColumn
             // 
-            passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
-            passwordDataGridViewTextBoxColumn.HeaderText = "Password";
-            passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
-            passwordDataGridViewTextBoxColumn.ReadOnly = true;
+            serviceTypeDataGridViewTextBoxColumn.DataPropertyName = "ServiceType";
+            serviceTypeDataGridViewTextBoxColumn.HeaderText = "ServiceType";
+            serviceTypeDataGridViewTextBoxColumn.Name = "serviceTypeDataGridViewTextBoxColumn";
             // 
-            // roleDataGridViewTextBoxColumn
+            // priceDataGridViewTextBoxColumn
             // 
-            roleDataGridViewTextBoxColumn.DataPropertyName = "Role";
-            roleDataGridViewTextBoxColumn.HeaderText = "Role";
-            roleDataGridViewTextBoxColumn.Name = "roleDataGridViewTextBoxColumn";
-            roleDataGridViewTextBoxColumn.ReadOnly = true;
+            priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
+            priceDataGridViewTextBoxColumn.HeaderText = "Price";
+            priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
+            // 
+            // feesTypeDataGridViewTextBoxColumn
+            // 
+            feesTypeDataGridViewTextBoxColumn.DataPropertyName = "FeesType";
+            feesTypeDataGridViewTextBoxColumn.HeaderText = "FeesType";
+            feesTypeDataGridViewTextBoxColumn.Name = "feesTypeDataGridViewTextBoxColumn";
+            // 
+            // statusDataGridViewTextBoxColumn
+            // 
+            statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
+            statusDataGridViewTextBoxColumn.HeaderText = "Status";
+            statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
+            // 
+            // isSurchargedDataGridViewTextBoxColumn
+            // 
+            isSurchargedDataGridViewTextBoxColumn.DataPropertyName = "IsSurcharged";
+            isSurchargedDataGridViewTextBoxColumn.HeaderText = "IsSurcharged";
+            isSurchargedDataGridViewTextBoxColumn.Name = "isSurchargedDataGridViewTextBoxColumn";
+            // 
+            // createdDataGridViewTextBoxColumn
+            // 
+            createdDataGridViewTextBoxColumn.DataPropertyName = "Created";
+            createdDataGridViewTextBoxColumn.HeaderText = "Created";
+            createdDataGridViewTextBoxColumn.Name = "createdDataGridViewTextBoxColumn";
             // 
             // Admin
             // 
@@ -247,8 +312,9 @@
             ((System.ComponentModel.ISupportInitialize)Logo).EndInit();
             ((System.ComponentModel.ISupportInitialize)usersTable).EndInit();
             usersStrip.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)requestsTable).EndInit();
             ((System.ComponentModel.ISupportInitialize)userBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)requestsTable).EndInit();
+            ((System.ComponentModel.ISupportInitialize)requestBindingSource).EndInit();
             ResumeLayout(false);
         }
 
@@ -271,5 +337,14 @@
         private DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn roleDataGridViewTextBoxColumn;
         private BindingSource userBindingSource;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn userIdDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn serviceTypeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn feesTypeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn isSurchargedDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn createdDataGridViewTextBoxColumn;
+        private BindingSource requestBindingSource;
     }
 }

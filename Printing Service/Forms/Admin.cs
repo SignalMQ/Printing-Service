@@ -33,14 +33,20 @@ namespace Printing_Service.Forms
             usersTable.DataSource = _users;
             if (_users.Count > 0)
             {
-                LoadRequests(_users[0]);
+                LoadRequests(_users[usersTable.CurrentCell.RowIndex]);
             }
         }
 
         private void LoadRequests(User? user)
         {
-            _requests = _db.Requests.ToList();
-            requestsTable.DataSource = _requests.Select(x => x.UserId == user.Id);
+            _requests.Clear();
+
+            foreach (Request request in _requests.Where(x => x.UserId == user.Id))
+            {
+                _requests.Add(request);
+            }
+            
+            requestsTable.DataSource = _requests;
         }
 
         private void createUserItem_Click(object sender, EventArgs e)
@@ -60,8 +66,13 @@ namespace Printing_Service.Forms
             {
                 if (MessageBox.Show("Do you really want to do this?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    int removeIndex = usersTable.CurrentCell.RowIndex;
-                    _db.Users.Remove(_users[removeIndex]);
+                    foreach (var index in usersTable.SelectedCells.Cast<DataGridViewCell>()
+                        .Select(cell => cell.RowIndex)
+                        .Distinct())
+                    {
+                        _db.Users.Remove(_users[index]);
+                    }
+
                     _db.SaveChanges();
                     LoadTable();
                 }
@@ -99,7 +110,6 @@ namespace Printing_Service.Forms
         {
             var selectedIndex = usersTable.CurrentCell.RowIndex;
             var user = _users[selectedIndex];
-            LoadRequests(user);
         }
     }
 }
