@@ -47,7 +47,6 @@
             btnRequests = new Button();
             btnReports = new Button();
             requestsTable = new DataGridView();
-            requestBindingSource = new BindingSource(components);
             idDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             userIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             serviceTypeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -56,6 +55,7 @@
             statusDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             isSurchargedDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             createdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            requestBindingSource = new BindingSource(components);
             GridLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Logo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)usersTable).BeginInit();
@@ -122,7 +122,8 @@
             usersTable.ReadOnly = true;
             usersTable.RowTemplate.Height = 25;
             usersTable.Size = new Size(738, 214);
-            usersTable.TabIndex = 1;
+            usersTable.TabIndex = 0;
+            usersTable.VirtualMode = true;
             usersTable.CellClick += usersTable_CellClick;
             // 
             // idDataGridViewTextBoxColumn
@@ -157,33 +158,37 @@
             // 
             usersStrip.Items.AddRange(new ToolStripItem[] { createUserItem, editUserToolStripMenuItem, deleteUserToolStripMenuItem, updateTableToolStripMenuItem });
             usersStrip.Name = "usersStrip";
-            usersStrip.Size = new Size(147, 92);
+            usersStrip.Size = new Size(190, 92);
             // 
             // createUserItem
             // 
             createUserItem.Name = "createUserItem";
-            createUserItem.Size = new Size(146, 22);
+            createUserItem.ShortcutKeys = Keys.Control | Keys.N;
+            createUserItem.Size = new Size(189, 22);
             createUserItem.Text = "Add new user";
             createUserItem.Click += createUserItem_Click;
             // 
             // editUserToolStripMenuItem
             // 
             editUserToolStripMenuItem.Name = "editUserToolStripMenuItem";
-            editUserToolStripMenuItem.Size = new Size(146, 22);
+            editUserToolStripMenuItem.ShortcutKeys = Keys.F2;
+            editUserToolStripMenuItem.Size = new Size(189, 22);
             editUserToolStripMenuItem.Text = "Edit user";
             editUserToolStripMenuItem.Click += editUserToolStripMenuItem_Click;
             // 
             // deleteUserToolStripMenuItem
             // 
             deleteUserToolStripMenuItem.Name = "deleteUserToolStripMenuItem";
-            deleteUserToolStripMenuItem.Size = new Size(146, 22);
+            deleteUserToolStripMenuItem.ShortcutKeys = Keys.Delete;
+            deleteUserToolStripMenuItem.Size = new Size(189, 22);
             deleteUserToolStripMenuItem.Text = "Delete user";
             deleteUserToolStripMenuItem.Click += deleteUserToolStripMenuItem_Click;
             // 
             // updateTableToolStripMenuItem
             // 
             updateTableToolStripMenuItem.Name = "updateTableToolStripMenuItem";
-            updateTableToolStripMenuItem.Size = new Size(146, 22);
+            updateTableToolStripMenuItem.ShortcutKeys = Keys.F5;
+            updateTableToolStripMenuItem.Size = new Size(189, 22);
             updateTableToolStripMenuItem.Text = "Update table";
             updateTableToolStripMenuItem.Click += updateTableToolStripMenuItem_Click;
             // 
@@ -244,11 +249,8 @@
             requestsTable.Name = "requestsTable";
             requestsTable.RowTemplate.Height = 25;
             requestsTable.Size = new Size(738, 214);
-            requestsTable.TabIndex = 5;
-            // 
-            // requestBindingSource
-            // 
-            requestBindingSource.DataSource = typeof(BL.Objects.Request);
+            requestsTable.TabIndex = 1;
+            requestsTable.VirtualMode = true;
             // 
             // idDataGridViewTextBoxColumn1
             // 
@@ -298,6 +300,10 @@
             createdDataGridViewTextBoxColumn.HeaderText = "Created";
             createdDataGridViewTextBoxColumn.Name = "createdDataGridViewTextBoxColumn";
             // 
+            // requestBindingSource
+            // 
+            requestBindingSource.DataSource = typeof(BL.Objects.Request);
+            // 
             // Admin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -305,6 +311,7 @@
             ClientSize = new Size(784, 561);
             Controls.Add(GridLayout);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            KeyPreview = true;
             Name = "Admin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Admin";

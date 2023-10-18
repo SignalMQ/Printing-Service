@@ -15,6 +15,16 @@ namespace Printing_Service.Forms
             _user = user;
 
             Load += EditUser_Load;
+            KeyDown += EditUser_KeyDown;
+        }
+
+        private void EditUser_KeyDown(object? sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter: btnSave_Click(sender, e); break;
+                case Keys.Escape: btnCancel_Click(sender, e); break;
+            }
         }
 
         private void EditUser_Load(object? sender, EventArgs e)

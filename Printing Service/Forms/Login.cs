@@ -19,6 +19,16 @@ namespace Printing_Service.Forms
 
             _adminFactory = adminFactory;
             _db = db;
+
+            KeyDown += Login_KeyDown;
+        }
+
+        private void Login_KeyDown(object? sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter: btnLogin_Click(sender, e); break;
+            }
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -27,19 +37,21 @@ namespace Printing_Service.Forms
 
             if (_user?.Role == "Admin")
             {
-                txtUsername.Clear();
-                txtPassword.Clear();
                 _adminFactory.Create().ShowDialog();
+                txtUsername.Text = string.Empty;
+                txtPassword.Text = string.Empty;
             }
             else if (txtUsername.Text == serviceUser && txtPassword.Text == servicePassword)
             {
-                txtUsername.Clear();
-                txtPassword.Clear();
                 _adminFactory.Create().ShowDialog();
+                txtUsername.Text = string.Empty;
+                txtPassword.Text = string.Empty;
             }
             else
             {
                 MessageBox.Show("Authorization failed.\nPlease contact your Administrator!");
+                txtUsername.Text = string.Empty;
+                txtPassword.Text = string.Empty;
             }
         }
     }

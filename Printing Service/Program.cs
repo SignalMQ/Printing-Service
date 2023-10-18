@@ -17,6 +17,7 @@ namespace Printing_Service
             IServiceProvider serviceProvider = GetServices().BuildServiceProvider();
 
             ApplicationConfiguration.Initialize();
+            Application.SetCompatibleTextRenderingDefault(true);
             Application.Run(serviceProvider.GetRequiredService<ILoginFactory>().Create());
         }
 

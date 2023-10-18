@@ -92,7 +92,7 @@
             btnLogin.Margin = new Padding(10, 10, 10, 15);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(231, 40);
-            btnLogin.TabIndex = 4;
+            btnLogin.TabIndex = 2;
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = true;
             btnLogin.Click += btnLogin_Click;
@@ -143,6 +143,7 @@
             Controls.Add(GridLayout);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            KeyPreview = true;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Login";

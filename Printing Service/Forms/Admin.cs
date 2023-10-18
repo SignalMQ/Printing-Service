@@ -20,6 +20,15 @@ namespace Printing_Service.Forms
             _db = db;
 
             Load += Admin_Load;
+            KeyDown += Admin_KeyDown;
+        }
+
+        private void Admin_KeyDown(object? sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Escape: btnExit_Click(sender, e); break;
+            }
         }
 
         private void Admin_Load(object? sender, EventArgs e)
@@ -45,7 +54,7 @@ namespace Printing_Service.Forms
             {
                 _requests.Add(request);
             }
-            
+
             requestsTable.DataSource = _requests;
         }
 

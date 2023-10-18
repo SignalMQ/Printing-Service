@@ -12,6 +12,17 @@ namespace Printing_Service.Forms
             InitializeComponent();
 
             _db = db;
+
+            KeyDown += CreateUser_KeyDown;
+        }
+
+        private void CreateUser_KeyDown(object? sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter: btnSave_Click(sender, e); break;
+                case Keys.Escape: btnCancel_Click(sender, e); break;
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

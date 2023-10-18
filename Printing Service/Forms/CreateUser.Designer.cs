@@ -47,7 +47,7 @@
             btnCancel.Margin = new Padding(10);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(202, 47);
-            btnCancel.TabIndex = 1;
+            btnCancel.TabIndex = 3;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
@@ -58,7 +58,7 @@
             btnSave.Margin = new Padding(10);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(202, 47);
-            btnSave.TabIndex = 2;
+            btnSave.TabIndex = 4;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnSave_Click;
@@ -99,14 +99,14 @@
             txtUsername.Location = new Point(82, 60);
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(390, 23);
-            txtUsername.TabIndex = 4;
+            txtUsername.TabIndex = 0;
             // 
             // txtPassword
             // 
             txtPassword.Location = new Point(82, 95);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(390, 23);
-            txtPassword.TabIndex = 5;
+            txtPassword.TabIndex = 1;
             // 
             // lblRole
             // 
@@ -125,7 +125,7 @@
             comboRole.Location = new Point(82, 130);
             comboRole.Name = "comboRole";
             comboRole.Size = new Size(390, 23);
-            comboRole.TabIndex = 7;
+            comboRole.TabIndex = 2;
             comboRole.Text = "Admin";
             // 
             // CreateUser
@@ -144,6 +144,7 @@
             Controls.Add(btnCancel);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            KeyPreview = true;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "CreateUser";
