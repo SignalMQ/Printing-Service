@@ -50,12 +50,15 @@ namespace Printing_Service.Forms
         {
             _requests.Clear();
 
+            //_db.Requests.Add(new Request() { Id = 1, UserId = user.Id });
+            //_db.SaveChanges();
+
             foreach (Request request in _db.Requests.Where(x => x.UserId == user.Id))
             {
                 _requests.Add(request);
             }
 
-            requestsTable.DataSource = _requests;
+            requestsTable.DataSource = _requests.Count > 0 ? _requests : null;
         }
 
         private void createUserItem_Click(object sender, EventArgs e)
@@ -119,6 +122,7 @@ namespace Printing_Service.Forms
         {
             var selectedIndex = usersTable.CurrentCell.RowIndex;
             var user = _users[selectedIndex];
+            LoadRequests(user);
         }
     }
 }

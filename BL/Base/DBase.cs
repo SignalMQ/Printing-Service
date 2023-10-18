@@ -8,7 +8,7 @@ namespace BL.Base
     /// </summary>
     public class DBase: DbContext
     {
-        public string connectionString = "Data Source=base.db;";
+        public string connectionString = "Data Source=base.db";
         public DbSet<User> Users { get; set; }
         public DbSet<Request> Requests { get; set; }
         public DBase() => Database.EnsureCreated();
