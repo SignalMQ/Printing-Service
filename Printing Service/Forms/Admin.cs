@@ -37,11 +37,11 @@ namespace Printing_Service.Forms
             }
         }
 
-        private void LoadRequests(User? user)
+        private void LoadRequests(User user)
         {
             _requests.Clear();
 
-            foreach (Request request in _requests.Where(x => x.UserId == user.Id))
+            foreach (Request request in _db.Requests.Where(x => x.UserId == user.Id))
             {
                 _requests.Add(request);
             }
