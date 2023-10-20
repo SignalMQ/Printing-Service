@@ -33,36 +33,26 @@
             GridLayout = new TableLayoutPanel();
             Logo = new PictureBox();
             usersTable = new DataGridView();
-            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            usernameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            passwordDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            roleDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             usersStrip = new ContextMenuStrip(components);
             createUserItem = new ToolStripMenuItem();
             editUserToolStripMenuItem = new ToolStripMenuItem();
             deleteUserToolStripMenuItem = new ToolStripMenuItem();
             updateTableToolStripMenuItem = new ToolStripMenuItem();
-            userBindingSource = new BindingSource(components);
             btnExit = new Button();
             btnRequests = new Button();
             btnReports = new Button();
             requestsTable = new DataGridView();
-            idDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            userIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            serviceTypeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            priceDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            feesTypeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            statusDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            isSurchargedDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            createdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            requestBindingSource = new BindingSource(components);
+            requestsStrip = new ContextMenuStrip(components);
+            addRequestToolStripMenuItem = new ToolStripMenuItem();
+            removeRequestToolStripMenuItem = new ToolStripMenuItem();
+            editRequestToolStripMenuItem = new ToolStripMenuItem();
+            updateTableToolStripMenuItem1 = new ToolStripMenuItem();
             GridLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Logo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)usersTable).BeginInit();
             usersStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)userBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)requestsTable).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)requestBindingSource).BeginInit();
+            requestsStrip.SuspendLayout();
             SuspendLayout();
             // 
             // GridLayout
@@ -109,13 +99,10 @@
             usersTable.AllowUserToDeleteRows = false;
             usersTable.AllowUserToResizeColumns = false;
             usersTable.AllowUserToResizeRows = false;
-            usersTable.AutoGenerateColumns = false;
             usersTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             usersTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            usersTable.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, usernameDataGridViewTextBoxColumn, passwordDataGridViewTextBoxColumn, roleDataGridViewTextBoxColumn });
             GridLayout.SetColumnSpan(usersTable, 3);
             usersTable.ContextMenuStrip = usersStrip;
-            usersTable.DataSource = userBindingSource;
             usersTable.Dock = DockStyle.Fill;
             usersTable.Location = new Point(23, 53);
             usersTable.Name = "usersTable";
@@ -126,53 +113,25 @@
             usersTable.VirtualMode = true;
             usersTable.CellClick += usersTable_CellClick;
             // 
-            // idDataGridViewTextBoxColumn
-            // 
-            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            idDataGridViewTextBoxColumn.HeaderText = "Id";
-            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // usernameDataGridViewTextBoxColumn
-            // 
-            usernameDataGridViewTextBoxColumn.DataPropertyName = "Username";
-            usernameDataGridViewTextBoxColumn.HeaderText = "Username";
-            usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
-            usernameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // passwordDataGridViewTextBoxColumn
-            // 
-            passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
-            passwordDataGridViewTextBoxColumn.HeaderText = "Password";
-            passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
-            passwordDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // roleDataGridViewTextBoxColumn
-            // 
-            roleDataGridViewTextBoxColumn.DataPropertyName = "Role";
-            roleDataGridViewTextBoxColumn.HeaderText = "Role";
-            roleDataGridViewTextBoxColumn.Name = "roleDataGridViewTextBoxColumn";
-            roleDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // usersStrip
             // 
-            usersStrip.Items.AddRange(new ToolStripItem[] { createUserItem, editUserToolStripMenuItem, deleteUserToolStripMenuItem, updateTableToolStripMenuItem });
+            usersStrip.Items.AddRange(new ToolStripItem[] { createUserItem, deleteUserToolStripMenuItem, editUserToolStripMenuItem, updateTableToolStripMenuItem });
             usersStrip.Name = "usersStrip";
-            usersStrip.Size = new Size(190, 92);
+            usersStrip.Size = new Size(181, 114);
             // 
             // createUserItem
             // 
             createUserItem.Name = "createUserItem";
             createUserItem.ShortcutKeys = Keys.Control | Keys.N;
-            createUserItem.Size = new Size(189, 22);
-            createUserItem.Text = "Add new user";
+            createUserItem.Size = new Size(180, 22);
+            createUserItem.Text = "Add user";
             createUserItem.Click += createUserItem_Click;
             // 
             // editUserToolStripMenuItem
             // 
             editUserToolStripMenuItem.Name = "editUserToolStripMenuItem";
             editUserToolStripMenuItem.ShortcutKeys = Keys.F2;
-            editUserToolStripMenuItem.Size = new Size(189, 22);
+            editUserToolStripMenuItem.Size = new Size(180, 22);
             editUserToolStripMenuItem.Text = "Edit user";
             editUserToolStripMenuItem.Click += editUserToolStripMenuItem_Click;
             // 
@@ -180,21 +139,17 @@
             // 
             deleteUserToolStripMenuItem.Name = "deleteUserToolStripMenuItem";
             deleteUserToolStripMenuItem.ShortcutKeys = Keys.Delete;
-            deleteUserToolStripMenuItem.Size = new Size(189, 22);
-            deleteUserToolStripMenuItem.Text = "Delete user";
-            deleteUserToolStripMenuItem.Click += deleteUserToolStripMenuItem_Click;
+            deleteUserToolStripMenuItem.Size = new Size(180, 22);
+            deleteUserToolStripMenuItem.Text = "Remove user";
+            deleteUserToolStripMenuItem.Click += removeUserToolStripMenuItem_Click;
             // 
             // updateTableToolStripMenuItem
             // 
             updateTableToolStripMenuItem.Name = "updateTableToolStripMenuItem";
             updateTableToolStripMenuItem.ShortcutKeys = Keys.F5;
-            updateTableToolStripMenuItem.Size = new Size(189, 22);
+            updateTableToolStripMenuItem.Size = new Size(180, 22);
             updateTableToolStripMenuItem.Text = "Update table";
             updateTableToolStripMenuItem.Click += updateTableToolStripMenuItem_Click;
-            // 
-            // userBindingSource
-            // 
-            userBindingSource.DataSource = typeof(BL.Objects.User);
             // 
             // btnExit
             // 
@@ -238,12 +193,10 @@
             requestsTable.AllowUserToDeleteRows = false;
             requestsTable.AllowUserToResizeColumns = false;
             requestsTable.AllowUserToResizeRows = false;
-            requestsTable.AutoGenerateColumns = false;
             requestsTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             requestsTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            requestsTable.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn1, userIdDataGridViewTextBoxColumn, serviceTypeDataGridViewTextBoxColumn, priceDataGridViewTextBoxColumn, feesTypeDataGridViewTextBoxColumn, statusDataGridViewTextBoxColumn, isSurchargedDataGridViewTextBoxColumn, createdDataGridViewTextBoxColumn });
             GridLayout.SetColumnSpan(requestsTable, 3);
-            requestsTable.DataSource = requestBindingSource;
+            requestsTable.ContextMenuStrip = requestsStrip;
             requestsTable.Dock = DockStyle.Fill;
             requestsTable.Location = new Point(23, 293);
             requestsTable.Name = "requestsTable";
@@ -252,57 +205,35 @@
             requestsTable.TabIndex = 1;
             requestsTable.VirtualMode = true;
             // 
-            // idDataGridViewTextBoxColumn1
+            // requestsStrip
             // 
-            idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            idDataGridViewTextBoxColumn1.HeaderText = "Id";
-            idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
+            requestsStrip.Items.AddRange(new ToolStripItem[] { addRequestToolStripMenuItem, removeRequestToolStripMenuItem, editRequestToolStripMenuItem, updateTableToolStripMenuItem1 });
+            requestsStrip.Name = "requestsStrip";
+            requestsStrip.Size = new Size(160, 92);
             // 
-            // userIdDataGridViewTextBoxColumn
+            // addRequestToolStripMenuItem
             // 
-            userIdDataGridViewTextBoxColumn.DataPropertyName = "UserId";
-            userIdDataGridViewTextBoxColumn.HeaderText = "UserId";
-            userIdDataGridViewTextBoxColumn.Name = "userIdDataGridViewTextBoxColumn";
+            addRequestToolStripMenuItem.Name = "addRequestToolStripMenuItem";
+            addRequestToolStripMenuItem.Size = new Size(159, 22);
+            addRequestToolStripMenuItem.Text = "Add request";
             // 
-            // serviceTypeDataGridViewTextBoxColumn
+            // removeRequestToolStripMenuItem
             // 
-            serviceTypeDataGridViewTextBoxColumn.DataPropertyName = "ServiceType";
-            serviceTypeDataGridViewTextBoxColumn.HeaderText = "ServiceType";
-            serviceTypeDataGridViewTextBoxColumn.Name = "serviceTypeDataGridViewTextBoxColumn";
+            removeRequestToolStripMenuItem.Name = "removeRequestToolStripMenuItem";
+            removeRequestToolStripMenuItem.Size = new Size(159, 22);
+            removeRequestToolStripMenuItem.Text = "Remove request";
             // 
-            // priceDataGridViewTextBoxColumn
+            // editRequestToolStripMenuItem
             // 
-            priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
-            priceDataGridViewTextBoxColumn.HeaderText = "Price";
-            priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
+            editRequestToolStripMenuItem.Name = "editRequestToolStripMenuItem";
+            editRequestToolStripMenuItem.Size = new Size(159, 22);
+            editRequestToolStripMenuItem.Text = "Edit request";
             // 
-            // feesTypeDataGridViewTextBoxColumn
+            // updateTableToolStripMenuItem1
             // 
-            feesTypeDataGridViewTextBoxColumn.DataPropertyName = "FeesType";
-            feesTypeDataGridViewTextBoxColumn.HeaderText = "FeesType";
-            feesTypeDataGridViewTextBoxColumn.Name = "feesTypeDataGridViewTextBoxColumn";
-            // 
-            // statusDataGridViewTextBoxColumn
-            // 
-            statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
-            statusDataGridViewTextBoxColumn.HeaderText = "Status";
-            statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
-            // 
-            // isSurchargedDataGridViewTextBoxColumn
-            // 
-            isSurchargedDataGridViewTextBoxColumn.DataPropertyName = "IsSurcharged";
-            isSurchargedDataGridViewTextBoxColumn.HeaderText = "IsSurcharged";
-            isSurchargedDataGridViewTextBoxColumn.Name = "isSurchargedDataGridViewTextBoxColumn";
-            // 
-            // createdDataGridViewTextBoxColumn
-            // 
-            createdDataGridViewTextBoxColumn.DataPropertyName = "Created";
-            createdDataGridViewTextBoxColumn.HeaderText = "Created";
-            createdDataGridViewTextBoxColumn.Name = "createdDataGridViewTextBoxColumn";
-            // 
-            // requestBindingSource
-            // 
-            requestBindingSource.DataSource = typeof(BL.Objects.Request);
+            updateTableToolStripMenuItem1.Name = "updateTableToolStripMenuItem1";
+            updateTableToolStripMenuItem1.Size = new Size(159, 22);
+            updateTableToolStripMenuItem1.Text = "Update table";
             // 
             // Admin
             // 
@@ -319,9 +250,8 @@
             ((System.ComponentModel.ISupportInitialize)Logo).EndInit();
             ((System.ComponentModel.ISupportInitialize)usersTable).EndInit();
             usersStrip.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)userBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)requestsTable).EndInit();
-            ((System.ComponentModel.ISupportInitialize)requestBindingSource).EndInit();
+            requestsStrip.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -339,19 +269,12 @@
         private ToolStripMenuItem deleteUserToolStripMenuItem;
         private ToolStripMenuItem updateTableToolStripMenuItem;
         private DataGridView requestsTable;
-        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn roleDataGridViewTextBoxColumn;
-        private BindingSource userBindingSource;
-        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn userIdDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn serviceTypeDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn feesTypeDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn isSurchargedDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn createdDataGridViewTextBoxColumn;
-        private BindingSource requestBindingSource;
+        private ContextMenuStrip requestsStrip;
+        private ToolStripMenuItem addRequestToolStripMenuItem;
+        private ToolStripMenuItem removeRequestToolStripMenuItem;
+        private ToolStripMenuItem editRequestToolStripMenuItem;
+        private ToolStripMenuItem updateTableToolStripMenuItem1;
     }
 }

@@ -17,7 +17,7 @@
         /// <summary>
         /// Type of service
         /// </summary>
-        public string? ServiceType { get; set; }
+        public string? Service { get; set; }
         /// <summary>
         /// Price of service
         /// </summary>
@@ -25,7 +25,7 @@
         /// <summary>
         /// Type of fees
         /// </summary>
-        public string? FeesType { get; set; }
+        public string? Fees { get; set; }
         /// <summary>
         /// Request status
         /// </summary>

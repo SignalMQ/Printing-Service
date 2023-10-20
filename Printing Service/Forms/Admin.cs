@@ -50,9 +50,6 @@ namespace Printing_Service.Forms
         {
             _requests.Clear();
 
-            //_db.Requests.Add(new Request() { Id = 1, UserId = user.Id });
-            //_db.SaveChanges();
-
             foreach (Request request in _db.Requests.Where(x => x.UserId == user.Id))
             {
                 _requests.Add(request);
@@ -69,25 +66,6 @@ namespace Printing_Service.Forms
             if (result == DialogResult.OK)
             {
                 LoadTable();
-            }
-        }
-
-        private void deleteUserToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (usersTable.Rows.Count > 0)
-            {
-                if (MessageBox.Show("Do you really want to do this?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    foreach (var index in usersTable.SelectedCells.Cast<DataGridViewCell>()
-                        .Select(cell => cell.RowIndex)
-                        .Distinct())
-                    {
-                        _db.Users.Remove(_users[index]);
-                    }
-
-                    _db.SaveChanges();
-                    LoadTable();
-                }
             }
         }
 
@@ -123,6 +101,25 @@ namespace Printing_Service.Forms
             var selectedIndex = usersTable.CurrentCell.RowIndex;
             var user = _users[selectedIndex];
             LoadRequests(user);
+        }
+
+        private void removeUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (usersTable.Rows.Count > 0)
+            {
+                if (MessageBox.Show("Do you really want to do this?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    foreach (var index in usersTable.SelectedCells.Cast<DataGridViewCell>()
+                        .Select(cell => cell.RowIndex)
+                        .Distinct())
+                    {
+                        _db.Users.Remove(_users[index]);
+                    }
+
+                    _db.SaveChanges();
+                    LoadTable();
+                }
+            }
         }
     }
 }

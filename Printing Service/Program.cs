@@ -36,6 +36,7 @@ namespace Printing_Service
             services.AddSingleton<IAdminFactory, AdminFactory>();
             services.AddSingleton<ICreateUserFactory, CreateUserFactory>();
             services.AddSingleton<IEditUserFactory, EditUserFactory>();
+            services.AddSingleton<ICustomerFactory, CustomerFactory>();
             
             return services;
         }
