@@ -3,11 +3,11 @@ using BL.Objects;
 
 namespace BL.Repository
 {
-    public class Repository : IRepostory<User>
+    public class UserRepository : IRepostory<User>
     {
         private readonly MyDbContext.MyDbContext _myDbContext;
 
-        public Repository(MyDbContext.MyDbContext myDbContext)
+        public UserRepository(MyDbContext.MyDbContext myDbContext)
         {
             _myDbContext = myDbContext;
         }
