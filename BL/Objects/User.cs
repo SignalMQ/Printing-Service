@@ -25,6 +25,6 @@
         /// <summary>
         /// Requests of user
         /// </summary>
-        public List<Request>? Requests { get; set; }
+        public List<Request>? Requests { get; set; } = new();
     }
 }

@@ -34,7 +34,7 @@
             groupBox1 = new GroupBox();
             requestsTable = new DataGridView();
             groupBox2 = new GroupBox();
-            textBox1 = new TextBox();
+            txtTotal = new TextBox();
             label4 = new Label();
             btnCancelLast = new Button();
             btnRequest = new Button();
@@ -108,7 +108,7 @@
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(textBox1);
+            groupBox2.Controls.Add(txtTotal);
             groupBox2.Controls.Add(label4);
             groupBox2.Controls.Add(btnCancelLast);
             groupBox2.Controls.Add(btnRequest);
@@ -126,13 +126,13 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Create request";
             // 
-            // textBox1
+            // txtTotal
             // 
-            textBox1.Location = new Point(306, 87);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(126, 23);
-            textBox1.TabIndex = 9;
+            txtTotal.Location = new Point(306, 87);
+            txtTotal.Name = "txtTotal";
+            txtTotal.ReadOnly = true;
+            txtTotal.Size = new Size(126, 23);
+            txtTotal.TabIndex = 9;
             // 
             // label4
             // 
@@ -196,6 +196,7 @@
             urgentCheckbox.TabIndex = 4;
             urgentCheckbox.Text = "Urgent";
             urgentCheckbox.UseVisualStyleBackColor = true;
+            urgentCheckbox.CheckedChanged += ValueChanged;
             // 
             // quantityUpDown
             // 
@@ -206,6 +207,7 @@
             quantityUpDown.Size = new Size(180, 23);
             quantityUpDown.TabIndex = 3;
             quantityUpDown.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            quantityUpDown.ValueChanged += ValueChanged;
             // 
             // label2
             // 
@@ -227,6 +229,7 @@
             serviceCombo.Name = "serviceCombo";
             serviceCombo.Size = new Size(180, 23);
             serviceCombo.TabIndex = 1;
+            serviceCombo.SelectedIndexChanged += ValueChanged;
             // 
             // label1
             // 
@@ -280,7 +283,7 @@
         private ComboBox serviceCombo;
         private Button btnRequest;
         private Button btnCancelLast;
-        private TextBox textBox1;
+        private TextBox txtTotal;
         private Label label4;
     }
 }

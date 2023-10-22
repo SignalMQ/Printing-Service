@@ -15,6 +15,10 @@
         /// </summary>
         public int UserId { get; set; }
         /// <summary>
+        /// Identifier for request for worker
+        /// </summary>
+        public int LinkedUserId { get; set; }
+        /// <summary>
         /// Type of service
         /// </summary>
         public string? Service { get; set; }
@@ -24,10 +28,6 @@
         public double Price { get; set; }
         /// <summary>
         /// Type of fees
-        /// </summary>
-        public string? Fees { get; set; }
-        /// <summary>
-        /// Request status
         /// </summary>
         public string? Status { get; set; }
         /// <summary>
