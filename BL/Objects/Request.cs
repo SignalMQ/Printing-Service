@@ -2,8 +2,10 @@
 {
     /// <summary>
     /// Basic realization of requests from users
+    /// 
+    /// Other it's Requests table scheme
     /// </summary>
-    [Serializable]
+    [Serializable] //for json futured
     public class Request
     {
         /// <summary>

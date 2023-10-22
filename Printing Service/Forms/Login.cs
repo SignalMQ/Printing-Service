@@ -11,6 +11,7 @@ namespace Printing_Service.Forms
         private readonly DBase _db;
         private User? _user;
 
+        //Service Account credentials
         private const string serviceUser = "Service";
         private const string servicePassword = "QWE123rty456";
 
@@ -35,12 +36,12 @@ namespace Printing_Service.Forms
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            _user = _db.Users.FirstOrDefault(x => x.Username == txtUsername.Text & x.Password == txtPassword.Text);
+            _user = _db.Users.FirstOrDefault(x => x.Username == txtUsername.Text & x.Password == txtPassword.Text); //find user from base by username and password
 
             //Service account
             if (txtUsername.Text == serviceUser && txtPassword.Text == servicePassword)
             {
-                _adminFactory.Create().ShowDialog();
+                _adminFactory.Create().ShowDialog(); //Creates form from factory and show as dialog for block previous form
                 txtUsername.Text = string.Empty;
                 txtPassword.Text = string.Empty;
                 return;

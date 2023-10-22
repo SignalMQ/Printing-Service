@@ -2,8 +2,10 @@
 {
     /// <summary>
     /// Basic realization of all subjects
+    /// 
+    /// Users table scheme
     /// </summary>
-    [Serializable]
+    [Serializable] //for json futured
     public class User
     {
         /// <summary>

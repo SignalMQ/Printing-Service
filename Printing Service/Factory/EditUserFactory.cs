@@ -4,6 +4,7 @@ using Printing_Service.Forms;
 
 namespace Printing_Service.Factory
 {
+    // see AdminFactory.cs for comments
     public interface IEditUserFactory
     {
         EditUser Create(User user);

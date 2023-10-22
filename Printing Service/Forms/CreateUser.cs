@@ -20,8 +20,8 @@ namespace Printing_Service.Forms
         {
             switch (e.KeyCode)
             {
-                case Keys.Enter: btnSave_Click(sender, e); break;
-                case Keys.Escape: btnCancel_Click(sender, e); break;
+                case Keys.Enter: btnSave_Click(sender, e); break; //Enter saves user
+                case Keys.Escape: btnCancel_Click(sender, e); break; //Escape cancel operation
             }
         }
 
@@ -32,10 +32,11 @@ namespace Printing_Service.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            //Check steps for User creation
             if (string.IsNullOrEmpty(txtUsername.Text))
             {
                 MessageBox.Show("Username is empty!");
-                return;
+                return; //next instruction of code ignored, we go out from this method
             }
             else if (txtUsername.Text.Length < 5)
             {
@@ -54,17 +55,19 @@ namespace Printing_Service.Forms
             }
             else
             {
+                //Prepare User object for save to base
                 _user.Username = txtUsername.Text;
                 _user.Password = txtPassword.Text;
                 _user.Role = comboRole.SelectedItem?.ToString() ?? "Unknown";
 
-                if (_db.Users.Where(x => x.Username == txtUsername.Text).Count() == 0)
+                //Checks User already not included in base
+                if (_db.Users.Where(x => x.Username == txtUsername.Text).Count() == 0) //Linq = SQL 
                 {
                     _db.Users.Add(_user);
                     _db.SaveChanges();
 
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
+                    this.DialogResult = DialogResult.OK; //return OK answer, after save operation is sucessfull
+                    this.Close(); //close this form
                 }
                 else
                 {

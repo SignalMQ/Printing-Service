@@ -1,6 +1,6 @@
 ﻿namespace BL.Objects
 {
-    public static class Prices
+    public static class Prices //Standart prices category for using in code
     {
         public static double PrintingA4BlackAndWhite = 0.8;
         public static double PrintingA4Color = 2.5;

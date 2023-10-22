@@ -5,6 +5,8 @@ namespace Printing_Service.Forms
 {
     public partial class EditUser : Form
     {
+        //realization of this form similar to CreateUser
+
         DBase _db;
         User _user;
         public EditUser(DBase db, User user)
@@ -67,7 +69,7 @@ namespace Printing_Service.Forms
                 _user.Password = txtPassword.Text;
                 _user.Role = comboRole.SelectedItem?.ToString() ?? "Unknown";
 
-                _db.Users.Update(_user);
+                _db.Users.Update(_user); //update user credentials
                 _db.SaveChanges();
 
                 this.DialogResult = DialogResult.OK;

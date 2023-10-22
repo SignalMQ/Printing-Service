@@ -16,9 +16,11 @@ namespace Printing_Service
             //This is a provider for using services in project
             IServiceProvider serviceProvider = GetServices().BuildServiceProvider();
 
+            //Dependency Injection container is similar to virtual machine with other hardware with other operation system, this garanty objects controls in everywhere
+
             ApplicationConfiguration.Initialize();
             Application.SetCompatibleTextRenderingDefault(true);
-            Application.Run(serviceProvider.GetRequiredService<ILoginFactory>().Create());
+            Application.Run(serviceProvider.GetRequiredService<ILoginFactory>().Create()); //create Login form from factory and show as Application
         }
 
         /// <summary>
@@ -38,6 +40,8 @@ namespace Printing_Service
             services.AddSingleton<IEditUserFactory, EditUserFactory>();
             services.AddSingleton<ICustomerFactory, CustomerFactory>();
             
+
+            //every class, form and other objects first added to services collections
             return services;
         }
     }
